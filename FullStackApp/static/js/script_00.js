@@ -1,7 +1,6 @@
 const chatInput = document.querySelector(".chat-input textarea");
 const sendChatBtn = document.querySelector(".chat-input span");
 const chatbox = document.querySelector(".chatbox");
-const recommendBtn = document.querySelector(".chatbox button");
 
 let userMessage;
 
@@ -22,21 +21,6 @@ const getResponse = (incomingChatLi) => {
     var server_data = { 'value': userMessage };
     // AJAX allows web pages to be updated asynchronously by exchanging data with a web server behind the scenes. 
     // This means that it is possible to update parts of a web page, without reloading the whole page.
-    $.ajax({ 
-        url: '/process', 
-        type: 'POST', 
-        contentType: 'application/json', 
-        data: JSON.stringify(server_data),
-        success: function(data) {
-            console.log(data);
-            messageElement.textContent = data.response
-        }
-    });
-}
-
-const getRecommend = (incomingChatLi) => {
-    const messageElement = incomingChatLi.querySelector("p")
-    var server_data = { 'value': 'get_recommended_products' };
     $.ajax({ 
         url: '/process', 
         type: 'POST', 
@@ -74,23 +58,8 @@ const handleChat = () => {
 
 }
 
-const recommendProductRequest = () => {
-    setTimeout(
-        () => {
-            // Display "Thinking..." message while waiting for Response 
-            const incomingChatLi = createChatLi("Thinking...","incoming")
-            chatbox.appendChild(incomingChatLi);
-            getRecommend(incomingChatLi);
-            chatbox.scrollTo(0, chatbox.scrollHeight);
-        }
-        ,600
-    )
-}
-
 // if click the send_chat_button, run function handle_chat 
 sendChatBtn.addEventListener("click",handleChat)
-
-recommendBtn.addEventListener("click",recommendProductRequest)
 
 // Execute a function when the user presses a key on the keyboard
 chatInput.addEventListener("keypress", function(event) {
