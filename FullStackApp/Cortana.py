@@ -1,5 +1,6 @@
 '''
 Chat bot development version 1.0\n
+    Use SequenceMatcher to return list of the best "good enough" matches\n
 Chat bot development version 1.1.0\n
     rewrite chat() function to follow fullstack flow get input from templates -> chat(input) return response -> send response to frontend\n
     reduced feature to only receive input & send output\n
@@ -76,14 +77,14 @@ def chat(input: str) -> str:
     )
 
     # if there is a best match for the prompt, return the written response else run option write new pattern - response to the knowledge base
-    if best_match:
-        response: str = get_answer_for_input(best_match, knowledge_base)
-        
-    elif user_input.lower() == 'what time is it ?':
+    if user_input.lower() == 'what time is it ?':
         response = 'it\'s ' + now.strftime('%I:%M:%S %p')
             
     elif user_input.lower() == 'what date is it ?':
         response = 'it\'s ' + now.strftime('%A, %B %d, %Y')
+    
+    elif best_match:
+        response: str = get_answer_for_input(best_match, knowledge_base)
 
     else:
         response = "I do not know how to response."
