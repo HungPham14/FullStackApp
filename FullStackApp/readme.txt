@@ -1,4 +1,4 @@
-Name: Chat Bot Web App
+Name: ChatBot Web Application
 
 Language: Python, Javascript, CSS, HTML
 
