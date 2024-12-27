@@ -1,0 +1,50 @@
+------------------------------------------
+-------------- Star Schema ---------------
+------------------------------------------
+Structure: A star schema has a central fact table connected to multiple dimension tables. Each dimension table is denormalized and contains redundant data.
+
+Simplicity: Easier to design and understand. Queries are simpler and faster because they involve fewer joins.
+
+Performance: Generally performs better for read-heavy operations and OLAP (Online Analytical Processing) queries.
+
+Use Case: Suitable for simpler data models with fewer relationships and when query performance is a priority.
+
+
+------------------------------------------
+------------ Snowflake Schema ------------
+------------------------------------------
+Structure: A snowflake schema is a more normalized version of the star schema. Dimension tables are further split into related tables, reducing redundancy.
+
+Complexity: More complex to design and understand. Queries involve more joins, which can impact performance.
+
+Performance: May perform better for write-heavy operations and OLTP (Online Transaction Processing) queries due to reduced redundancy.
+
+Use Case: Suitable for more complex data models with many relationships and when data integrity and storage efficiency are priorities.
+
+Recommendation for Your Run Tracker App
+Given that your Run Tracker app will likely involve read-heavy operations (e.g., retrieving user runs, displaying statistics), a star schema might be more suitable. It offers simpler queries and better performance for analytical queries, which are common in tracking and reporting applications.
+
+However, if your app requires complex relationships and you prioritize data integrity and storage efficiency, a snowflake schema could be a better choice.
+
+
+-------------------------------------------
+- Example Star Schema for Run Tracker App -
+-------------------------------------------
+Fact Table: 
+    runs: run_id, user_id, distance, duration, timestamp
+
+Dimension Tables:
+    users: user_id, name, email
+    locations: location_id, latitude, longitude
+
+
+--------------------------------------------
+Example Snowflake Schema for Run Tracker App
+--------------------------------------------
+Fact Table: 
+    runs: run_id, user_id, distance, duration, timestamp
+
+Dimension Tables:
+    users: user_id, name, email
+    locations: location_id, latitude, longitude
+    user_details: user_id, age, gender

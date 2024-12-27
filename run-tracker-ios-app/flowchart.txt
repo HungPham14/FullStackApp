@@ -1,0 +1,67 @@
++---------------------+          +---------------------+          +---------------------+
+|                     |          |                     |          |                     |
+|   React Native      |          |   Flask Backend     |          |   PostgreSQL        |
+|   Frontend          |          |   (Python)          |          |   Database          |
+|                     |          |                     |          |                     |
++---------------------+          +---------------------+          +---------------------+
+          |                              |                              |
+          |                              |                              |
+          v                              v                              v
++---------------------+          +---------------------+          +---------------------+
+|                     |          |                     |          |                     |
+|   HomeScreen.js     |          |   __init__.py       |          |   runs              |
+|                     |          |                     |          |   - run_id          |
++---------------------+          +---------------------+          |   - user_id         |
+          |                              |                        |   - distance        |
+          |                              |                        |   - duration        |
+          v                              v                        |   - timestamp       |
++---------------------+          +---------------------+          +---------------------+
+|                     |          |                     |          |                     |
+|   RunTracker.js     |          |   routes.py         |          |   users             |
+|                     |          |                     |          |   - user_id         |
++---------------------+          +---------------------+          |   - name            |
+          |                              |                        |   - email           |
+          |                              |                        +---------------------+
+          v                              v
++---------------------+          +---------------------+
+|                     |          |                     |
+|   LoginScreen.js    |          |   models.py         |
+|                     |          |                     |
++---------------------+          +---------------------+
+          |                              |
+          |                              |
+          v                              v
++---------------------+          +---------------------+
+|                     |          |                     |
+|   RegisterScreen.js |          |   config.py         |
+|                     |          |                     |
++---------------------+          +---------------------+
+          |                              |
+          |                              |
+          v                              v
++---------------------+          +---------------------+
+|                     |          |                     |
+|   api.js            |          |   run.py            |
+|                     |          |                     |
++---------------------+          +---------------------+
+
+------------------------------------------------------------------------------------------
+-------------------------------------- EXPLAINATION --------------------------------------
+------------------------------------------------------------------------------------------
+1. React Native Frontend:
+├── HomeScreen.js: Main screen of the app.
+├── RunTracker.js: Component to track and display runs.
+├── LoginScreen.js: User login screen.
+├── RegisterScreen.js: User registration screen.
+|__ api.js: Handles API calls to the backend.
+
+2. Flask Backend:
+├── __init__.py: Initializes the Flask app and configures it.
+├── routes.py: Defines the API endpoints.
+├── models.py: Defines the database models.
+├── config.py: Configuration settings for the Flask app.
+|__ run.py: Entry point to run the Flask app.
+
+PostgreSQL Database:
+├── runs: Table to store run data (run_id, user_id, distance, duration, timestamp).
+|__ users: Table to store user data (user_id, name, email).

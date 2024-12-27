@@ -28,7 +28,7 @@ Tracking Metrics:
 - Track (Indoor | Outdoor)				                Boolean		User Input
 - Gender (Male | Female)				                Boolean		User Input
 - Age 							                        Int 		User Input
-- Terrain (Road | Mountain | Beach | Gym)		        Int		User Input
+- Terrain (Road | Mountain | Beach | Gym)		        Int		    User Input
 - Jobs 							                        Text		User Input
 - Name 							                        Text 		User Input
 - Date 							                        Datetime
@@ -81,7 +81,8 @@ run-tracker-app/
 ├── README.md
 
 Tools and Technologies
-Front-End: JavaScript React Native Framework
+Front-End: JavaScript, React Native Framework
 Back-End: Python, Flask Framework
 Database: PostgreSQL
 Deployment: AWS, Google Cloud, Heroku
+Networking: When testing on a physical device, ensure your Flask server is accessible from the device. Use your local network IP address instead of localhost.
