@@ -83,6 +83,11 @@ run-tracker-app/
 Tools and Technologies
 Front-End: JavaScript, React Native Framework
 Back-End: Python, Flask Framework
-Database: PostgreSQL
-Deployment: AWS, Google Cloud, Heroku
+Database: 
+    - Firebase
+    - PostgreSQL (setup DP flw Supabase) 
+Deployment: 
+    - Firebase
+    - AWS (app hosting) , Supabase (database hosting)
+Cybersecurity: skip if host on cloud
 Networking: When testing on a physical device, ensure your Flask server is accessible from the device. Use your local network IP address instead of localhost.
