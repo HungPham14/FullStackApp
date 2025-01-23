@@ -1,0 +1,20 @@
+# Python Dependencies
+flask>=3.0.3 # A simple framework for building complex web applications.
+flask-cors>=4.0.1 # A Flask extension adding a decorator for CORS support
+psycopg2>=2.9.10 # Python-PostgreSQL Database Adapter
+numpy>=1.26.4 # Fundamental package for array computing in Python
+geopy>=2.4.1 # Python Geocoding Toolbox
+
+# React Native Dependencies
+react-native-permissions>=1.0.0 # A unified permissions API for React Native on iOS and Android
+react-native-gps>=1.0.0 # A GPS module for React Native
+react-navigation>=6.0.0 # Routing and navigation for React Native apps
+@react-navigation/native # Core navigation library for React Native
+@react-navigation/native-stack # Stack navigator for React Native
+react-native-svg>=1.0.0 # SVG library for React Native
+react-native>=0.70.0 # A framework for building native apps using React
+enzyme>=0.15.0 # JavaScript Testing utilities for React
+react-test-renderer>=0.16.0 # React Test Renderer
+
+# Additional Dependencies (e.g., for authentication or UI)
+realm-js>=10.18.1  # For a lightweight database solution
