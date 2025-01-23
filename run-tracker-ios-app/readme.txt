@@ -60,7 +60,7 @@ run-tracker-app/
 │   │   ├── config.py
 │   │   ├── utils.py
 │   ├── venv/
-│   ├── requirements.txt
+│   ├── requirements.txt                        # lists all the Python Flask dependencies - backend | server side needed. how to run: on cmd "pip install -r requirements.txt"
 │   ├── run.py
 ├── frontend/
 │   ├── src/
@@ -75,7 +75,7 @@ run-tracker-app/
 │   │   │   ├── api.js
 │   ├── assets/
 │   ├── node_modules/
-│   ├── package.json
+│   ├── package.json                            # lists all the React Native dependencies - frontend | client side needed. how to run: on bash "nmd install" 
 │   ├── babel.config.js
 │   ├── App.js
 ├── README.md

@@ -1,0 +1,6 @@
+# Python Dependencies
+flask>=3.0.3 # A simple framework for building complex web applications.
+flask-cors>=4.0.1 # A Flask extension adding a decorator for CORS support
+psycopg2>=2.9.10 # Python-PostgreSQL Database Adapter
+numpy>=1.26.4 # Fundamental package for array computing in Python
+geopy>=2.4.1 # Python Geocoding Toolbox
