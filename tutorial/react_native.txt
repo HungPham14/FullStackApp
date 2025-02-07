@@ -1,0 +1,2 @@
+Install bash
+Type "npx create-expo-app@latest" to Create an Expo project using the default template.
