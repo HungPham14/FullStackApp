@@ -1,10 +1,6 @@
-To run your project, navigate to the directory and run one of the following bash commands.
+To run your project, navigate to the directory and run one of the following npm commands.
 
-- Run `cd my-first-app` to make the app the current directory
-- Run `npx expo start` to start a development server. 
-- Open Expo Go app on your phone to stimulate your app.
-
-OPTIONAL:
+- cd my-app
 - npm run android
 - npm run ios # you need to use macOS to build the iOS project - use the Expo app if you need to do iOS development without a Mac
 - npm run web
