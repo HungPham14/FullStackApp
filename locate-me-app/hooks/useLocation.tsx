@@ -4,9 +4,6 @@ import * as Location from 'expo-location';
 
 const useLocation = () => {
     // declare state variables
-    // const [errorMsg, setErrorMsg] = useState('');
-    // const [latitude, setLatitude] = useState('');
-    // const [longitude, setLongitude] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
     const [latitude, setLatitude] = useState(0); 
     const [longitude, setLongitude] = useState(0);
