@@ -1,9 +1,11 @@
 // Import packages
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, Button, Alert } from "react-native";
-import MapView, {Marker} from "react-native-maps";
-import Geolocation from "@react-native-community/geolocation";
+import { Text, View, StyleSheet, TouchableOpacity, Alert } from "react-native";
+import MapView, {Marker} from "react-native-maps"; // view map
+import Geolocation from "@react-native-community/geolocation"; // get user location
 import type { GeolocationOptions } from '@react-native-community/geolocation';
+import useLocation from "../hooks/useLocation"; // custom hook to get user location
+
 // import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 // import { AppleMaps } from "expo-maps"; // this component can't be used in Expo Go.
 
@@ -37,17 +39,30 @@ import type { GeolocationOptions } from '@react-native-community/geolocation';
 
 // Preview Map with User Location
 export default function Index() {
+
+  // get location from custom hook
+  const { latitude, longitude, errorMsg } = useLocation();
+
+  // 
   return (
+    // <View style={styles.container}>
+    //   <MapView
+    //     style={styles.map}
+    //     showsUserLocation={true}
+    //     followsUserLocation={true}
+    //     showsScale={true}
+    //     userLocationCalloutEnabled={true}
+    //   >
+    //   </MapView>
+    // </View>
     <View style={styles.container}>
-      <MapView
-        style={styles.map}
-        showsUserLocation={true}
-        followsUserLocation={true}
-        showsScale={true}
-        userLocationCalloutEnabled={true}
-      >
-      </MapView>
-    </View>
+       <Text style={styles.baseText}>Testing Current User Location</Text>
+       <Text style={styles.baseText}>latitude: {latitude}</Text>
+       <Text style={styles.baseText}>longitude: {longitude}</Text>
+       <TouchableOpacity onPress={() => console.log('lat and long of user is: ',latitude,longitude)}>
+       <Text style={styles.baseText}>Press Me</Text>
+       </TouchableOpacity>
+     </View>
   );
 }
 
@@ -67,6 +82,7 @@ const styles = StyleSheet.create({
     color: "#ffffff",
   },
 
+  // map style
   map: {
     width: "100%",
     height: "100%",
