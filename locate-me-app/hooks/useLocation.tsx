@@ -1,7 +1,9 @@
+// import the necessary modules
 import { StyleSheet, Text, View } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
 
+// hook declaration
 const useLocation = () => {
     // declare state variables
     const [errorMsg, setErrorMsg] = useState('');
