@@ -33,11 +33,11 @@ export default function Index() {
   // custom hook to animate view
   const animatedStyle = useAnimatedStyle(() => {
       return {
-        opacity: 0.6, // set opacity to 0.6 (60%) to make the map a bit transparent
+        opacity: 1, // set opacity to 0.6 (60%) to make the map a bit transparent
         transform: [{ scale: 1 }]
       };
     });
-
+  
   return (
     // create black background
     <View style={{
@@ -52,22 +52,30 @@ export default function Index() {
           followsUserLocation={true}
           showsScale={true}
           userLocationCalloutEnabled={true}
+          // initial region
+          initialRegion={{
+            latitude: latitude,
+            longitude: longitude,
+            // latitudeDelta: 0.0922,
+            latitudeDelta: 0.0092,
+            // longitudeDelta: 0.0421,
+            longitudeDelta: 0.0042,
+          }}
         >
-          <Marker
-            coordinate={{ latitude: latitude, longitude: longitude }}
-            title="User Location"
-            description="This is the user's location"
-          />
+          <View style={styles.container_top}>
+            <Text style={styles.boldTitle}>Distance</Text>
+          </View>
+          <View style={styles.container}>
+            <Text style={styles.boldText}>Testing Current User Location</Text>
+            <Text style={styles.baseText}>latitude: {latitude}</Text>
+            <Text style={styles.baseText}>longitude: {longitude}</Text>
+          </View>
         </MapView>
       </ReAnimatedView.View>
     </View>
     
 
-    // render the user coordinates text
     // <View style={styles.container}>
-    //   <Text style={styles.baseText}>Testing Current User Location</Text>
-    //   <Text style={styles.baseText}>latitude: {latitude}</Text>
-    //   <Text style={styles.baseText}>longitude: {longitude}</Text>
     //   <TouchableOpacity onPress={() => console.log('lat and long of user is: ',latitude,longitude)}>
     //     <Text style={styles.baseText}>Press Me</Text>
     //   </TouchableOpacity>
@@ -79,23 +87,59 @@ export default function Index() {
 const styles = StyleSheet.create({
 
   // container style
-  // container: {
-  //   flex: 1,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   backgroundColor: "rgba(0, 0, 0, 0.13)",
-  // },
+  container: {
+    flex: 1,
+    position: "absolute",
+    width: "70%",
+    height: "10%",
+    top: 500, 
+    left: 10, 
+    // right: 0, 
+    // bottom: 0,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgb(29, 29, 29)",
+  },
+
+  container_top: {
+    flex: 1,
+    position: "absolute",
+    // width: "70%",
+    // height: "10%",
+    width: "auto",
+    height: "auto",
+    top: 200, 
+    left: 120, 
+    // right: 0, 
+    // bottom: 0,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(29, 29, 29, 0)",
+  },
 
   // text style
   baseText: {
     color: "rgb(255, 255, 255)",
-    // fontSize: 10,
+    // fontSize: 15,
     // fontWeight: "bold",
+  },
+
+  boldText: {
+    fontWeight: "bold",
+    color: "rgb(255, 255, 255)",
+    fontSize: 15,
+  },
+
+  boldTitle: {
+    fontWeight: "bold",
+    color: "rgb(255, 255, 255)",
+    fontSize: 35,
   },
 
   // map style
   map: {
     // flex: 1,
+    // position: "absolute",
     width: "100%",
     height: "100%",
     // backgroundColor: "rgb(0, 0, 0)",
