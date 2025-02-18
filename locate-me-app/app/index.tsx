@@ -7,7 +7,7 @@ import {
   , View
   , StyleSheet
   , StatusBar
-  // , TouchableOpacity
+  , TouchableOpacity
   // , Alert
   // , Modal
 } from "react-native";
@@ -95,14 +95,20 @@ export default function Index() {
       {/* level 1 child View component */}
       <View style={{
         backgroundColor: "rgb(0, 0, 0)", // dark background
-        height: "60%",
-        flexDirection: "row", // column layout
-        justifyContent: "center", // center content vertically
-        alignItems: "center", // center content horizontally
+        height: "70%",
+        flexDirection: "column", // column layout
+        // justifyContent: "center", // center content vertically
+        // alignItems: "center", // center content horizontally
       }}>
-
+        
+        {/* level 2 child View component */}
         <MapView
-            style={styles.map}
+            style={{
+              width: "100%",
+              height: "80%",
+              opacity: 0.7,
+              position: "absolute", // manually position by adjusting top, right, bottom, left
+            }}
             showsUserLocation={true}
             followsUserLocation={true}
             userLocationCalloutEnabled={true}
@@ -115,29 +121,29 @@ export default function Index() {
             }}
           >
         </MapView>
-      </View>
 
-      {/* level 1 child View component */}
-      <View style={{
-        backgroundColor: "rgb(255, 0, 0)",
-        height: "10%",
-        justifyContent: "center", // center content vertically
-        alignItems: "center", // center content horizontally
-      }}>
-        <Text style={styles.boldTitle}>Menu Bar</Text>
-        <Link href="/test">View testing page</Link>
+        {/* level 2 child View component */}
+        <View style={{
+              backgroundColor: "rgb(255, 0, 0)",
+              height: 110,
+              width: 110,
+              justifyContent: "center", // center content vertically
+              alignItems: "center", // center content horizontally
+              position: "absolute", // manually position by adjusting top, right, bottom, left
+              bottom: 70,
+              left: 140,
+              borderRadius: 50,
+            }}>
+              <Link href="/test"><Text style={styles.boldTitle}>Start</Text></Link>
+          {/* <TouchableOpacity
+            // onPress={() => this.props.navigation.navigate('test')}
+            >
+            <Text style={styles.boldTitle}>Start</Text>
+          </TouchableOpacity> */}
+        </View>
+
       </View>
     </SafeAreaView>
-    
-
-
-    
-
-    // <View style={styles.container}>
-    //   <TouchableOpacity onPress={() => console.log('lat and long of user is: ',latitude,longitude)}>
-    //     <Text style={styles.baseText}>Press Me</Text>
-    //   </TouchableOpacity>
-    // </View>
   );
 }
 
@@ -155,14 +161,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "70%",
     height: "10%",
-    top: 500, 
+    top: 300, 
     left: 10, 
     // right: 0, 
     // bottom: 0,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgb(29, 29, 29)",
-    opacity: 1,
+    // opacity: 1,
   },
 
   container_top: {
@@ -199,14 +205,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "rgb(255, 255, 255)",
     fontSize: 35,
-  },
-
-  // map style
-  map: {
-    // flex: 1,
-    // position: "absolute",
-    width: "100%",
-    height: "100%",
-    opacity: 0.8,
   },
 });
