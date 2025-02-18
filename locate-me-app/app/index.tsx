@@ -1,78 +1,136 @@
 // Import packages
 import React from "react";
+import { Link } from 'expo-router'; // import Link component from expo-router
 // import { useEffect, useState, useCallback } from "react"; // react hooks
 import {
   Text
   , View
   , StyleSheet
+  , StatusBar
   // , TouchableOpacity
   // , Alert
   // , Modal
-  // , BlurView
 } from "react-native";
 import MapView from "react-native-maps"; // view map
-import {Marker} from "react-native-maps"; // add marker to map
-
-import ReAnimatedView from "react-native-reanimated"; // animate view
-import { useAnimatedStyle } from "react-native-reanimated"; // animate map
 // import Geolocation from "@react-native-community/geolocation"; // get user location
 // import type { GeolocationOptions } from '@react-native-community/geolocation';
+import { SafeAreaView } from "react-native-safe-area-context"; // safe area view, to avoid status bar
 
 // custom hooks
 import useLocation from "../hooks/useLocation"; // custom hook to get user location
 
-// import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
-// import { AppleMaps } from "expo-maps"; // this component can't be used in Expo Go.
-
-// main component
+// main root component
 export default function Index() {
 
   // custom hook to get location
   const { latitude, longitude, errorMsg } = useLocation();
 
-  // custom hook to animate view
-  const animatedStyle = useAnimatedStyle(() => {
-      return {
-        opacity: 1, // set opacity to 0.6 (60%) to make the map a bit transparent
-        transform: [{ scale: 1 }]
-      };
-    });
-  
   return (
-    // create black background
-    <View style={{
-      backgroundColor: "rgb(0, 0, 0)", // dark background
-      flexDirection: "column", // column layout
-      justifyContent: "center", // center content vertically
-    }}>
-      <ReAnimatedView.View style={animatedStyle}>
+    // parent View component
+    <SafeAreaView style={styles.parent_container}>
+
+      {/* level 1 child View component */}
+      <View style={{
+        backgroundColor: "rgb(255, 0, 0)",
+        height: "10%",
+        justifyContent: "center", // center content vertically
+        alignItems: "center", // center content horizontally
+        flexDirection: "row",
+      }}>
+        
+        {/* level 2 child View component */}
+        <View style={{
+          backgroundColor: "rgb(0,0,0)", 
+          height: "100%", 
+          width: "30%",
+          justifyContent: "center", // center content vertically
+          alignItems: "center", // center content horizontally
+          flexDirection: "column",
+        }}>
+          <Text style={styles.boldTitle}>00:05</Text>
+          <Text style={styles.baseText}>Time</Text>
+        </View>
+
+        {/* level 2 child View component */}
+        <View style={{ 
+          backgroundColor: "rgb(0, 109, 156)", 
+          height: "100%", 
+          width: "30%",
+          justifyContent: "center", // center content vertically
+          alignItems: "center", // center content horizontally
+          flexDirection: "column",
+         }}>
+          <Text style={styles.boldTitle}>00:05</Text>
+          <Text style={styles.baseText}>Time</Text>
+         </View>
+
+        {/* level 2 child View component */}
+        <View style={{
+          backgroundColor: "rgb(157, 0, 147)", 
+          height: "100%", 
+          width: "30%",
+          justifyContent: "center", // center content vertically
+          alignItems: "center", // center content horizontally
+          flexDirection: "column",
+        }}>
+          <Text style={styles.boldTitle}>00:05</Text>
+          <Text style={styles.baseText}>Time</Text>
+        </View>
+      </View>
+
+      {/* level 1 child View component */}
+      <View style={
+        {
+          backgroundColor: "rgb(92, 92, 92)",
+          height: "20%",
+          justifyContent: "center", // center content vertically
+          alignItems: "center", // center content horizontally
+        }
+      }>
+        <Text style={styles.boldTitle}>5,03</Text>
+        <Text style={styles.baseText}>Kilometers</Text>
+      </View>
+
+      
+      {/* level 1 child View component */}
+      <View style={{
+        backgroundColor: "rgb(0, 0, 0)", // dark background
+        height: "60%",
+        flexDirection: "row", // column layout
+        justifyContent: "center", // center content vertically
+        alignItems: "center", // center content horizontally
+      }}>
+
         <MapView
-          style={styles.map}
-          showsUserLocation={true}
-          followsUserLocation={true}
-          showsScale={true}
-          userLocationCalloutEnabled={true}
-          // initial region
-          initialRegion={{
-            latitude: latitude,
-            longitude: longitude,
-            // latitudeDelta: 0.0922,
-            latitudeDelta: 0.0092,
-            // longitudeDelta: 0.0421,
-            longitudeDelta: 0.0042,
-          }}
-        >
-          <View style={styles.container_top}>
-            <Text style={styles.boldTitle}>Distance</Text>
-          </View>
-          <View style={styles.container}>
-            <Text style={styles.boldText}>Testing Current User Location</Text>
-            <Text style={styles.baseText}>latitude: {latitude}</Text>
-            <Text style={styles.baseText}>longitude: {longitude}</Text>
-          </View>
+            style={styles.map}
+            showsUserLocation={true}
+            followsUserLocation={true}
+            userLocationCalloutEnabled={true}
+            // initial region
+            initialRegion={{
+              latitude: latitude,
+              longitude: longitude,
+              latitudeDelta: 0.0092,
+              longitudeDelta: 0.0042,
+            }}
+          >
         </MapView>
-      </ReAnimatedView.View>
-    </View>
+      </View>
+
+      {/* level 1 child View component */}
+      <View style={{
+        backgroundColor: "rgb(255, 0, 0)",
+        height: "10%",
+        justifyContent: "center", // center content vertically
+        alignItems: "center", // center content horizontally
+      }}>
+        <Text style={styles.boldTitle}>Menu Bar</Text>
+        <Link href="/test">View testing page</Link>
+      </View>
+    </SafeAreaView>
+    
+
+
     
 
     // <View style={styles.container}>
@@ -85,7 +143,12 @@ export default function Index() {
 
 // styles declaration
 const styles = StyleSheet.create({
-
+  // parent container style
+  parent_container: {
+    flex: 1,
+    marginTop:StatusBar.currentHeight,
+    backgroundColor: "rgb(64, 0, 255)",
+  },
   // container style
   container: {
     flex: 1,
@@ -99,6 +162,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgb(29, 29, 29)",
+    opacity: 1,
   },
 
   container_top: {
@@ -114,7 +178,8 @@ const styles = StyleSheet.create({
     // bottom: 0,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(29, 29, 29, 0)",
+    backgroundColor: "rgb(29, 29, 29)",
+    opacity: 1,
   },
 
   // text style
@@ -142,6 +207,6 @@ const styles = StyleSheet.create({
     // position: "absolute",
     width: "100%",
     height: "100%",
-    // backgroundColor: "rgb(0, 0, 0)",
+    opacity: 0.8,
   },
 });
