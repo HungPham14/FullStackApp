@@ -18,16 +18,15 @@ import { SafeAreaView } from "react-native-safe-area-context"; // safe area view
 
 // custom hooks
 import useLocation from "../hooks/useLocation"; // custom hook to get user location
+import getDistance from "../hooks/getDistance"; // custom hook to get distance
 
 // main root component
 export default function Index() {
 
   // custom hook to get location
   const { latitude, longitude, errorMsg } = useLocation();
-
-  // const floatingPointNumber = 1.567;
-  // parseFloat(floatingPointNumber.toFixed(2));
-  // parseFloat(floatingPointNumber.toPrecision(3));
+  // custom hook to get distance
+  const { distance } = getDistance();
 
   return (
     // parent View component
@@ -91,8 +90,8 @@ export default function Index() {
           alignItems: "center", // center content horizontally
         }
       }>
-        <Text style={styles.boldTitle}>5,03</Text>
-        <Text style={styles.baseText}>Kilometers</Text>
+        <Text style={styles.boldTitle}>{parseFloat(distance.toPrecision(4))}</Text>
+        <Text style={styles.baseText}>To 29, 2A street in Kilometers</Text>
       </View>
 
       
