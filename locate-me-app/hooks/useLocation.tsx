@@ -1,6 +1,6 @@
 // import the necessary modules
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import { StyleSheet} from 'react-native';
+import { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
 
 // hook declaration
@@ -43,7 +43,7 @@ const useLocation = () => {
             });
             
             // log the detail location to the console
-            console.log('User location: ', response);
+            // console.log('User location: ', response);
         }
     };
 

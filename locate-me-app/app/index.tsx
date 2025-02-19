@@ -25,6 +25,10 @@ export default function Index() {
   // custom hook to get location
   const { latitude, longitude, errorMsg } = useLocation();
 
+  // const floatingPointNumber = 1.567;
+  // parseFloat(floatingPointNumber.toFixed(2));
+  // parseFloat(floatingPointNumber.toPrecision(3));
+
   return (
     // parent View component
     <SafeAreaView style={styles.parent_container}>
@@ -47,7 +51,7 @@ export default function Index() {
           alignItems: "center", // center content horizontally
           flexDirection: "column",
         }}>
-          <Text style={styles.boldTitle}>00:05</Text>
+          <Text style={styles.boldTitle}>00:00</Text>
           <Text style={styles.baseText}>Time</Text>
         </View>
 
@@ -60,8 +64,8 @@ export default function Index() {
           alignItems: "center", // center content horizontally
           flexDirection: "column",
          }}>
-          <Text style={styles.boldTitle}>00:05</Text>
-          <Text style={styles.baseText}>Time</Text>
+          <Text style={styles.boldTitle}>{parseFloat(latitude.toPrecision(4))}</Text>
+          <Text style={styles.baseText}>Latitude</Text>
          </View>
 
         {/* level 2 child View component */}
@@ -73,8 +77,8 @@ export default function Index() {
           alignItems: "center", // center content horizontally
           flexDirection: "column",
         }}>
-          <Text style={styles.boldTitle}>00:05</Text>
-          <Text style={styles.baseText}>Time</Text>
+          <Text style={styles.boldTitle}>{parseFloat(longitude.toPrecision(4))}</Text>
+          <Text style={styles.baseText}>Longitude</Text>
         </View>
       </View>
 
