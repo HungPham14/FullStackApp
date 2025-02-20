@@ -1,5 +1,4 @@
 // import the necessary modules
-import { StyleSheet} from 'react-native';
 import { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
 
@@ -29,7 +28,7 @@ const useLocation = () => {
             const {latitude, longitude} = coords;
 
             // log the coordinates to the console
-            console.log('lat and long of user is: ',latitude,longitude);
+            // console.log('lat and long of user is: ',latitude,longitude);
 
 
             // set the longitude and latitude state variables
@@ -58,6 +57,3 @@ const useLocation = () => {
 
 // export the useLocation function
 export default useLocation;
-
-// define the styles
-const styles = StyleSheet.create({}); 

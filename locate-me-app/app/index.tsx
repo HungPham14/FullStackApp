@@ -50,7 +50,8 @@ export default function Index() {
           alignItems: "center", // center content horizontally
           flexDirection: "column",
         }}>
-          <Text style={styles.boldTitle}>00:00</Text>
+          {/* {new Date().getTime()} */}
+          <Text style={styles.boldTitle}>00:00</Text> 
           <Text style={styles.baseText}>Time</Text>
         </View>
 
@@ -91,7 +92,7 @@ export default function Index() {
         }
       }>
         <Text style={styles.boldTitle}>{parseFloat(distance.toPrecision(4))}</Text>
-        <Text style={styles.baseText}>To 29, 2A street in Kilometers</Text>
+        <Text style={styles.baseText}>Kilometers</Text>
       </View>
 
       

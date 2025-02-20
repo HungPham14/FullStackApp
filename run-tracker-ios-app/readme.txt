@@ -80,7 +80,8 @@ run-tracker-app/
 │   ├── App.js
 ├── README.md
 
-Tools and Technologies
+---------------------------------------------------------------------------
+Technologies
 Front-End: JavaScript, React Native Framework
 Back-End: Python, Flask Framework
 Database: 
@@ -91,3 +92,28 @@ Deployment:
     - AWS (app hosting) , Supabase (database hosting)
 Cybersecurity: skip if host on cloud
 Networking: When testing on a physical device, ensure your Flask server is accessible from the device. Use your local network IP address instead of localhost.
+----------------------------------------------------------------------------
+Tools
+----------------------------------------------------------------------------
+- Appwrite: backend, an open-source platform that let u use Auth, Databases, Storage, Functions, Realtime
+- Expo: allows us to test our app and run in no time
+- NativeWind: it allows us to write tailwind-like style within React Native
+----------------------------------------------------------------------------
+Dear Hiring Manager,
+
+I am writing to express my enthusiasm for the Machine Learning Engineer position at Vietmap JSC. As someone who has used your app for nearly two years, I have firsthand experience with your innovative mapping solutions and a deep understanding of the challenges you aim to solve.
+
+With a strong foundation in Python programming and a passion for AI, I am excited about the opportunity to contribute to Vietmap’s mission of enhancing geospatial applications. My experience includes developing machine learning models that optimize routing and improve predictive analytics, aligning closely with your focus on route optimization and traffic forecasting.
+
+I pride myself on my ability to collaborate effectively with cross-functional teams, including GIS experts and data scientists, ensuring that ML solutions are both effective and integrated seamlessly into existing platforms. My approach emphasizes ethical considerations and best practices in AI, which I believe are crucial for trustable and impactful solutions.
+
+I am particularly drawn to Vietmap’s commitment to leveraging AI and machine learning in geospatial applications, as evidenced by your cutting-edge solutions. I am eager to contribute my skills in building scalable ML pipelines and enhancing model performance to further your goals.
+
+Thank you for considering my application. I look forward to the possibility of discussing how my background and skills can support Vietmap’s innovative endeavors.
+
+Sincerely,
+Pham Quang Hung
+
+
+Dear Hiring Team, I am writing to express my enthusiasm for the Machine Learning Engineer position at Vietmap JSC. I have experienced the impactful solutions you offer for nearly two years. With expertise in Python programming and a portfolio of machine learning projects, My work includes developing models such as image classifiers, object detection using geospatial data sources. I am excited about the opportunity to contribute my skills to your project. Thank you in advance for considering my application.
+Dear Hiring Team, I am writing to express my enthusiasm for the Data Crawler position that I encountered on Glints platform. My expertise lies in using SQL, Python to effectively pull, clean,  structure and preprocess datasets for seamless analysis. However, I am captivated by the art of crawling data by ultilizing Python packages such as BeautifulSoup, selenium, etc. I am excited about the opportunity to contribute my skills to your project. Thank you in advance for considering my application.
