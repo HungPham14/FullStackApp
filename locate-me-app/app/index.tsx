@@ -26,7 +26,7 @@ export default function Index() {
   // custom hook to get location
   const { latitude, longitude, errorMsg } = useLocation();
   // custom hook to get distance
-  const { distance } = getDistance();
+  const { totalDistance } = getDistance();
 
   return (
     // parent View component
@@ -64,7 +64,8 @@ export default function Index() {
           alignItems: "center", // center content horizontally
           flexDirection: "column",
          }}>
-          <Text style={styles.boldTitle}>{parseFloat(latitude.toPrecision(4))}</Text>
+          {/* <Text style={styles.baseText}>{latitude}</Text> */}
+          <Text style={styles.baseText}>{parseFloat(latitude.toPrecision(7))}</Text>
           <Text style={styles.baseText}>Latitude</Text>
          </View>
 
@@ -77,7 +78,8 @@ export default function Index() {
           alignItems: "center", // center content horizontally
           flexDirection: "column",
         }}>
-          <Text style={styles.boldTitle}>{parseFloat(longitude.toPrecision(4))}</Text>
+          {/* <Text style={styles.baseText}>{longitude}</Text> */}
+          <Text style={styles.baseText}>{parseFloat(longitude.toPrecision(7))}</Text>
           <Text style={styles.baseText}>Longitude</Text>
         </View>
       </View>
@@ -91,8 +93,9 @@ export default function Index() {
           alignItems: "center", // center content horizontally
         }
       }>
-        <Text style={styles.boldTitle}>{parseFloat(distance.toPrecision(4))}</Text>
-        <Text style={styles.baseText}>Kilometers</Text>
+        {/* <Text style={styles.boldTitle}>{parseFloat(totalDistance.toPrecision(4))}</Text> */}
+        <Text style={styles.boldTitle}>{totalDistance}</Text>
+        <Text style={styles.baseText}>meters</Text>
       </View>
 
       
@@ -195,7 +198,7 @@ const styles = StyleSheet.create({
   // text style
   baseText: {
     color: "rgb(255, 255, 255)",
-    // fontSize: 15,
+    fontSize: 10,
     // fontWeight: "bold",
   },
 

@@ -5,77 +5,56 @@ import * as Location from 'expo-location';
 // hook declaration
 const getDistance = () => {
     // declare state variables
-    const [errorMsg, setErrorMsg] = useState('');
-    const [latitude, setLatitude] = useState(0); 
-    const [longitude, setLongitude] = useState(0);
-    const [distance, setdistance] = useState(0);
-    const haversine = require('haversine');
+    const [totalDistance, setTotalDistance] = useState<number>(0);
+    const [previousLatitude, setPreviousLatitude] = useState<number>(0);
+    const [previousLongitude, setPreviousLongitude] = useState<number>(0);
+    const [currentLatitude, setCurrentLatitude] = useState<number>(0);
+    const [currentLongitude, setCurrentLongitude] = useState<number>(0);
 
-    const getDistance = async () => {
-        // request permission to access location while app is in foreground
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        
-        // if permission is not granted, set error message and return early
-        if (status !== 'granted') {
-            setErrorMsg('Permission to access location was denied');
-            return;
-        }
-        
-        // get the coordinates of the user's location
-        let { coords } = await Location.getCurrentPositionAsync({});
-
-        // set the longitude and latitude state variables
-        setLongitude(coords.longitude);
-        setLatitude(coords.latitude);
-
-        // calculate the distance between the start and end coordinates
-        // const distance = haversine(start, end, {unit: 'kilometer'});
-
-        // call the watch_location function when the component is mounted
-        const watch_location = async () => {
-            // let location: Location.LocationSubscription
-            let location = await Location.watchPositionAsync({
-                // properties of the location object
-                
-                // Enable high accuracy for the best location data.
-                accuracy: Location.Accuracy.High, // Accurate to within ten meters
-                // accuracy: Location.Accuracy.Balanced, // Accurate to within a hundred meters
-                // accuracy: Location.Accuracy.Low, // Accurate to within a kilometer
-
-                // Receive updates only when the location has changed by at least this distance in meters.
-                distanceInterval: 0.5,
-                
-                // Receive updates only when the location has changed by at least this time in milliseconds (1000 ms = 1 second).
-                timeInterval: 1000,
-
-                // Specifies whether to ask the user to turn on improved accuracy location mode which uses Wi-Fi, cell networks and GPS sensor.
-                mayShowUserSettingsDialog: false,
-            }
-            // (parameter) location_update: Location.LocationObject
-            , (location_update) => {
-                // log the location update to the console
-                console.log(location_update)
-
-                // calculate the distance between the start and end coordinates
-                const addDistance = haversine(
-                    {latitude: latitude, longitude: longitude}, 
-                    {latitude: location_update.coords.latitude, longitude: location_update.coords.longitude}, 
-                    {unit: 'kilometer'}
-                );
-                // set the distance state variable
-                setdistance(distance => distance + addDistance);
-            });
-        };
-        
-    };
-
-    // call the getDistance function when the component is mounted
+    // Request foreground permissions when the component mounts
     useEffect(() => {
-        getDistance();
+        const requestPermissions = async () => {
+        try {
+            await Location.requestForegroundPermissionsAsync();
+            if (previousLatitude === 0 || previousLongitude === 0) {
+                let {coords} = await Location.getCurrentPositionAsync({});
+                setPreviousLatitude(parseFloat(coords.latitude.toPrecision(6)));
+                setPreviousLongitude(parseFloat(coords.longitude.toPrecision(7)));
+            }
+            setupLocationListener();
+        } catch (error) {
+            console.error('Error requesting permissions:', error);
+        }
+        };
+        requestPermissions();
     }, []);
 
+    // Set up a location listener to calculate distance
+    const setupLocationListener = async () => {
+        Location.watchPositionAsync(
+            {
+                accuracy: Location.Accuracy.High, // use high accuracy for the best location data
+                distanceInterval: 1, // update every 1 meter
+            },
+            (location) => {
+                    setCurrentLatitude(parseFloat(location.coords.latitude.toPrecision(6)));
+                    setCurrentLongitude(parseFloat(location.coords.longitude.toPrecision(7)));
+                    if (currentLatitude !== previousLatitude || currentLongitude !== previousLongitude) {
+                        setTotalDistance(totalDistance => totalDistance + 1);
+                        setPreviousLatitude(currentLatitude);
+                        setPreviousLongitude(currentLongitude);
+                    }
+                }
+        );
+    };
+
     // return the state variables that will be used by the component
-    return { distance , errorMsg };
+    console.log('Total distance:', totalDistance);
+    console.log('Current latitude: ', currentLatitude);
+    console.log('Previous latitude: ', previousLatitude);
+    console.log('Current longitude: ', currentLongitude);
+    console.log('Previous longitude: ', previousLongitude);
+    return { totalDistance };
 };
 
 // export the getDistance function
