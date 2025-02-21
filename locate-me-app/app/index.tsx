@@ -21,7 +21,7 @@ import getDistance from "../hooks/getDistance"; // custom hook to get distance
 export default function Index() {
 
   // custom hook to get location
-  const { latitude, longitude, errorMsg } = useLocation();
+  const { latitude, longitude } = useLocation();
   // custom hook to get distance
   const { totalDistance } = getDistance();
   // get window width and height
