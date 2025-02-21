@@ -18,7 +18,7 @@ const getDistance = () => {
             await Location.requestForegroundPermissionsAsync();
             if (previousLatitude === 0 || previousLongitude === 0) {
                 let {coords} = await Location.getCurrentPositionAsync({});
-                setPreviousLatitude(parseFloat(coords.latitude.toPrecision(6)));
+                setPreviousLatitude(parseFloat(coords.latitude.toPrecision(7)));
                 setPreviousLongitude(parseFloat(coords.longitude.toPrecision(7)));
             }
             setupLocationListener();
@@ -37,7 +37,7 @@ const getDistance = () => {
                 distanceInterval: 1, // update every 1 meter
             },
             (location) => {
-                    setCurrentLatitude(parseFloat(location.coords.latitude.toPrecision(6)));
+                    setCurrentLatitude(parseFloat(location.coords.latitude.toPrecision(7)));
                     setCurrentLongitude(parseFloat(location.coords.longitude.toPrecision(7)));
                     if (currentLatitude !== previousLatitude || currentLongitude !== previousLongitude) {
                         setTotalDistance(totalDistance => totalDistance + 1);
@@ -49,11 +49,11 @@ const getDistance = () => {
     };
 
     // return the state variables that will be used by the component
-    console.log('Total distance:', totalDistance);
-    console.log('Current latitude: ', currentLatitude);
-    console.log('Previous latitude: ', previousLatitude);
-    console.log('Current longitude: ', currentLongitude);
-    console.log('Previous longitude: ', previousLongitude);
+    // console.log('Total distance:', totalDistance);
+    // console.log('Current latitude: ', currentLatitude);
+    // console.log('Previous latitude: ', previousLatitude);
+    // console.log('Current longitude: ', currentLongitude);
+    // console.log('Previous longitude: ', previousLongitude);
     return { totalDistance };
 };
 

@@ -1,19 +1,16 @@
 // Import packages
 import React from "react";
+import { RadialGradient } from 'react-native-gradients'; // to create radial gradient
 import { Link } from 'expo-router'; // import Link component from expo-router
-// import { useEffect, useState, useCallback } from "react"; // react hooks
 import {
   Text
   , View
   , StyleSheet
   , StatusBar
   , TouchableOpacity
-  // , Alert
-  // , Modal
+  , Dimensions
 } from "react-native";
 import MapView from "react-native-maps"; // view map
-// import Geolocation from "@react-native-community/geolocation"; // get user location
-// import type { GeolocationOptions } from '@react-native-community/geolocation';
 import { SafeAreaView } from "react-native-safe-area-context"; // safe area view, to avoid status bar
 
 // custom hooks
@@ -27,6 +24,14 @@ export default function Index() {
   const { latitude, longitude, errorMsg } = useLocation();
   // custom hook to get distance
   const { totalDistance } = getDistance();
+  // get window width and height
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
+  // radial gradient color list for the map
+  const colorList = [
+    {offset: '10%', color: 'transparent', opacity: '0'},
+    {offset: '90%', color: 'black', opacity: '1'},
+  ]
 
   return (
     // parent View component
@@ -34,11 +39,13 @@ export default function Index() {
 
       {/* level 1 child View component */}
       <View style={{
-        backgroundColor: "rgb(255, 0, 0)",
-        height: "10%",
+        backgroundColor: "rgb(0, 0, 0)",
+        height: "15%",
         justifyContent: "center", // center content vertically
         alignItems: "center", // center content horizontally
         flexDirection: "row",
+        gap: "2.5%",
+        paddingVertical: "2.5%",
       }}>
         
         {/* level 2 child View component */}
@@ -51,69 +58,52 @@ export default function Index() {
           flexDirection: "column",
         }}>
           {/* {new Date().getTime()} */}
-          <Text style={styles.boldTitle}>00:00</Text> 
-          <Text style={styles.baseText}>Time</Text>
+          <Text style={styles.bold_title}>00:00</Text> 
+          <Text style={styles.base_text}>Time</Text>
         </View>
 
         {/* level 2 child View component */}
         <View style={{ 
-          backgroundColor: "rgb(0, 109, 156)", 
+          backgroundColor: "rgb(0, 0, 0)", 
           height: "100%", 
           width: "30%",
           justifyContent: "center", // center content vertically
           alignItems: "center", // center content horizontally
           flexDirection: "column",
          }}>
-          {/* <Text style={styles.baseText}>{latitude}</Text> */}
-          <Text style={styles.baseText}>{parseFloat(latitude.toPrecision(7))}</Text>
-          <Text style={styles.baseText}>Latitude</Text>
+          {/* <Text style={styles.base_text}>{latitude}</Text> */}
+          <Text style={styles.bold_title}>--</Text> 
+          <Text style={styles.base_text}>Speed</Text>
          </View>
 
         {/* level 2 child View component */}
         <View style={{
-          backgroundColor: "rgb(157, 0, 147)", 
+          backgroundColor: "rgb(0, 0, 0)", 
           height: "100%", 
           width: "30%",
           justifyContent: "center", // center content vertically
           alignItems: "center", // center content horizontally
           flexDirection: "column",
         }}>
-          {/* <Text style={styles.baseText}>{longitude}</Text> */}
-          <Text style={styles.baseText}>{parseFloat(longitude.toPrecision(7))}</Text>
-          <Text style={styles.baseText}>Longitude</Text>
+          {/* <Text style={styles.base_text}>{longitude}</Text> */}
+          <Text style={styles.bold_title}>--</Text> 
+          <Text style={styles.base_text}>BPM</Text>
         </View>
       </View>
 
       {/* level 1 child View component */}
-      <View style={
-        {
-          backgroundColor: "rgb(92, 92, 92)",
-          height: "20%",
-          justifyContent: "center", // center content vertically
-          alignItems: "center", // center content horizontally
-        }
-      }>
-        {/* <Text style={styles.boldTitle}>{parseFloat(totalDistance.toPrecision(4))}</Text> */}
-        <Text style={styles.boldTitle}>{totalDistance}</Text>
-        <Text style={styles.baseText}>meters</Text>
-      </View>
-
-      
-      {/* level 1 child View component */}
       <View style={{
         backgroundColor: "rgb(0, 0, 0)", // dark background
-        height: "70%",
+        height: "85%",
         flexDirection: "column", // column layout
-        // justifyContent: "center", // center content vertically
-        // alignItems: "center", // center content horizontally
       }}>
         
         {/* level 2 child View component */}
         <MapView
             style={{
               width: "100%",
-              height: "80%",
-              opacity: 0.7,
+              height: "100%",
+              // opacity: 0.9,
               position: "absolute", // manually position by adjusting top, right, bottom, left
             }}
             showsUserLocation={true}
@@ -127,25 +117,62 @@ export default function Index() {
               longitudeDelta: 0.0042,
             }}
           >
+            <RadialGradient x="50%" y="50%" rx="60%" ry="40%" colorList={colorList}/>
         </MapView>
 
         {/* level 2 child View component */}
+        <View style={
+          {
+            backgroundColor: "rgba(255, 0, 221, 0)",
+                height: windowHeight / 5,
+                width: "100%",
+                justifyContent: "center", // center content vertically
+                alignItems: "center", // center content horizontally
+                position: "absolute", // manually position by adjusting top, right, bottom, left
+                top: 0,
+          }
+        }>
+          {/* <Text style={styles.bold_title}>{parseFloat(totalDistance.toPrecision(4))}</Text> */}
+          <Text style={{
+              fontWeight: "bold",
+              color: "rgb(255, 255, 255)",
+              fontSize: 100,
+            }}>{parseFloat((totalDistance / 1000).toPrecision(3))}
+          </Text>
+          <Text style={styles.base_text}>
+            Kilometers
+          </Text>
+        </View>
+
+        {/* level 2 child View component */}
         <View style={{
-              backgroundColor: "rgb(255, 0, 0)",
-              height: 110,
-              width: 110,
+              backgroundColor: "rgb(0, 255, 234)",
+              height: 120,
+              width: 120,
               justifyContent: "center", // center content vertically
               alignItems: "center", // center content horizontally
               position: "absolute", // manually position by adjusting top, right, bottom, left
-              bottom: 70,
-              left: 140,
-              borderRadius: 50,
+              bottom: "9%",
+              left: windowWidth / 2 - 60,
+              borderRadius: 60,
             }}>
-              <Link href="/test"><Text style={styles.boldTitle}>Start</Text></Link>
+              <Link href="/test">
+                {/* Should be replaced with an icon */}
+                <Text style={{
+                    fontWeight: "bold",
+                    color: "rgb(0, 0, 0)",
+                    fontSize: 35,
+                    // backgroundColor: "rgb(161, 161, 161)",
+                    textAlignVertical: 'center',
+                    textAlign: 'center',
+                  }}>
+                    Stop
+                </Text>
+              </Link>
           {/* <TouchableOpacity
             // onPress={() => this.props.navigation.navigate('test')}
             >
-            <Text style={styles.boldTitle}>Start</Text>
+            <Text style={styles.bold_title}>Start</Text>
           </TouchableOpacity> */}
         </View>
 
@@ -160,57 +187,25 @@ const styles = StyleSheet.create({
   parent_container: {
     flex: 1,
     marginTop:StatusBar.currentHeight,
-    backgroundColor: "rgb(64, 0, 255)",
-  },
-  // container style
-  container: {
-    flex: 1,
-    position: "absolute",
-    width: "70%",
-    height: "10%",
-    top: 300, 
-    left: 10, 
-    // right: 0, 
-    // bottom: 0,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgb(29, 29, 29)",
-    // opacity: 1,
-  },
-
-  container_top: {
-    flex: 1,
-    position: "absolute",
-    // width: "70%",
-    // height: "10%",
-    width: "auto",
-    height: "auto",
-    top: 200, 
-    left: 120, 
-    // right: 0, 
-    // bottom: 0,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgb(29, 29, 29)",
-    opacity: 1,
+    backgroundColor: "rgb(0, 0, 0)",
   },
 
   // text style
-  baseText: {
+  base_text: {
     color: "rgb(255, 255, 255)",
-    fontSize: 10,
+    fontSize: 15,
     // fontWeight: "bold",
   },
 
-  boldText: {
+  bold_text: {
     fontWeight: "bold",
     color: "rgb(255, 255, 255)",
     fontSize: 15,
   },
 
-  boldTitle: {
+  bold_title: {
     fontWeight: "bold",
     color: "rgb(255, 255, 255)",
-    fontSize: 35,
+    fontSize: 40,
   },
 });
