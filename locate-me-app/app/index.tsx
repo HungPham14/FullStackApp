@@ -12,18 +12,23 @@ import {
 } from "react-native";
 import MapView from "react-native-maps"; // view map
 import { SafeAreaView } from "react-native-safe-area-context"; // safe area view, to avoid status bar
+import moment from 'moment'; // import the moment library
+import Moment from 'react-moment'; // import the Moment component
 
 // custom hooks
 import useLocation from "../hooks/useLocation"; // custom hook to get user location
 import getDistance from "../hooks/getDistance"; // custom hook to get distance
+// import useTimer from "../hooks/useTimer"; // custom hook to get time
 
 // main root component
-export default function Index() {
+export default function runScreen() {
 
   // custom hook to get location
   const { latitude, longitude } = useLocation();
   // custom hook to get distance
   const { totalDistance } = getDistance();
+  // custom hook to get time
+
   // get window width and height
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
@@ -32,6 +37,11 @@ export default function Index() {
     {offset: '10%', color: 'transparent', opacity: '0'},
     {offset: '90%', color: 'black', opacity: '1'},
   ]
+  // const start = moment();
+  let date = new Date();
+  let hour = date.getHours();
+  let minute = date.getMinutes();
+  let second = date.getSeconds();
 
   return (
     // parent View component
@@ -58,8 +68,8 @@ export default function Index() {
           flexDirection: "column",
         }}>
           {/* {new Date().getTime()} */}
-          <Text style={styles.bold_title}>00:00</Text> 
-          <Text style={styles.base_text}>Time</Text>
+          <Text style={styles.bold_title}>--</Text> 
+          <Text style={styles.base_text}>Speed</Text>
         </View>
 
         {/* level 2 child View component */}
@@ -72,8 +82,8 @@ export default function Index() {
           flexDirection: "column",
          }}>
           {/* <Text style={styles.base_text}>{latitude}</Text> */}
-          <Text style={styles.bold_title}>--</Text> 
-          <Text style={styles.base_text}>Speed</Text>
+          <Text style={styles.bold_title}>{minute}:{second}</Text> 
+          <Text style={styles.base_text}>Time</Text>
          </View>
 
         {/* level 2 child View component */}
