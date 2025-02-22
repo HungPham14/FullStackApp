@@ -23,7 +23,7 @@ import stopWatch from "../hooks/stopWatch"; // custom hook to get time
 const formatTime = (time: number) => {
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
-  return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+  return `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 };
 
 // main root component
