@@ -18,7 +18,13 @@ import Moment from 'react-moment'; // import the Moment component
 // custom hooks
 import useLocation from "../hooks/useLocation"; // custom hook to get user location
 import getDistance from "../hooks/getDistance"; // custom hook to get distance
-// import useTimer from "../hooks/useTimer"; // custom hook to get time
+import stopWatch from "../hooks/stopWatch"; // custom hook to get time
+
+const formatTime = (time: number) => {
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+  return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+};
 
 // main root component
 export default function runScreen() {
@@ -28,7 +34,7 @@ export default function runScreen() {
   // custom hook to get distance
   const { totalDistance } = getDistance();
   // custom hook to get time
-
+  const time = stopWatch();
   // get window width and height
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
@@ -37,11 +43,6 @@ export default function runScreen() {
     {offset: '10%', color: 'transparent', opacity: '0'},
     {offset: '90%', color: 'black', opacity: '1'},
   ]
-  // const start = moment();
-  let date = new Date();
-  let hour = date.getHours();
-  let minute = date.getMinutes();
-  let second = date.getSeconds();
 
   return (
     // parent View component
@@ -82,7 +83,7 @@ export default function runScreen() {
           flexDirection: "column",
          }}>
           {/* <Text style={styles.base_text}>{latitude}</Text> */}
-          <Text style={styles.bold_title}>{minute}:{second}</Text> 
+          <Text style={styles.bold_title}>{formatTime(time.time)}</Text> 
           <Text style={styles.base_text}>Time</Text>
          </View>
 
