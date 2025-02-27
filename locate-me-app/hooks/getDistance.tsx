@@ -48,7 +48,7 @@ const getDistance = () => {
                         setTotalDistance(totalDistance => totalDistance + haversine(
                             {latitude: previousLatitude, longitude: previousLongitude},
                             {latitude: currentLatitude, longitude: currentLongitude},
-                            {unit: 'meter'}
+                            {unit: 'kilometer'}
                         ));
                         // setTotalDistance(totalDistance => totalDistance + 1);
                         setPreviousLatitude(currentLatitude);

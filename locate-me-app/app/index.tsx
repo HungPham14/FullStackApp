@@ -148,7 +148,7 @@ export default function runScreen() {
               fontWeight: "bold",
               color: "rgb(255, 255, 255)",
               fontSize: 100,
-            }}>{parseFloat((totalDistance / 1000).toPrecision(3))}
+            }}>{parseFloat(totalDistance.toPrecision(3))}
           </Text>
           <Text style={styles.base_text}>
             Kilometers
