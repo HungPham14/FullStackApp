@@ -37,8 +37,7 @@ const getDistance = () => {
         Location.watchPositionAsync(
             {
                 accuracy: Location.Accuracy.High, // use high accuracy for the best location data
-                // distanceInterval: 10, // update every 10 meter
-                distanceInterval: 1, // update every 10 meter
+                distanceInterval: 10, // update every 10 meter
             },
             (location) => {
                     setCurrentLatitude(location.coords.latitude);
