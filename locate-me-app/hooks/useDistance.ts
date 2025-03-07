@@ -8,17 +8,18 @@ interface Coordinates {
 }
 
 const useDistance = () => {
-  const [totalDistance, setTotalDistance] = useState<number>(0); // Total distance in km
+  const [totalDistance, setTotalDistance] = useState<number>(0); // Total distance in meter
   const [watchId, setWatchId] = useState<Location.LocationSubscription | null>(null); // Watch subscription ID
   const [previousLocation, setPreviousLocation] = useState<Coordinates | null>(null); // Previous location coordinates
 
   // Start tracking user location
   const startTracking = async (): Promise<void> => {
+    // returns a subscription object (of type Location.LocationSubscription).
     const id = await Location.watchPositionAsync(
       {
         accuracy: Location.Accuracy.High,
         timeInterval: 1000, // Update every second
-        distanceInterval: 5, // Update every 5 meters
+        distanceInterval: 1, // Update every 1 meter
       },
       (newLocation) => {
         const { latitude, longitude } = newLocation.coords;
@@ -40,7 +41,10 @@ const useDistance = () => {
   // Stop tracking user location
   const stopTracking = (): void => {
     if (watchId) {
+      // Stop watching
       watchId.remove();
+      
+      // Reset WatchId 
       setWatchId(null);
     }
   };
@@ -63,7 +67,8 @@ const useDistance = () => {
         Math.sin(dLon / 2) *
         Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c; // Distance in km
+    // return R * c; // Distance in km
+    return R * c * 1000; // Distance in m
   };
 
   return { totalDistance, startTracking, stopTracking };
