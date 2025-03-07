@@ -4,3 +4,23 @@ To run your project, navigate to the directory and run one of the following npm 
 - npm run android
 - npm run ios # you need to use macOS to build the iOS project - use the Expo app if you need to do iOS development without a Mac
 - npm run web
+
+When to Use .ts vs .tsx
+Use .ts for:
+    Utility functions
+    Pure logic hooks (like useDistance)
+    Type definitions (e.g., interfaces and type aliases)
+
+Use .tsx for:
+    Components that include JSX
+    Files that combine logic and UI rendering
+
+The primary reason for using a .ts file instead of a .tsx file for the useDistance hook is that useDistance does not contain any JSX elements. Here's why this distinction matters:
+
+    .ts for TypeScript Logic:
+        A .ts file is used for pure TypeScript logic, such as functions, hooks, or utility code that doesn’t directly involve rendering or interacting with React components.
+        The useDistance hook only handles logic for tracking and calculating distance, making it a pure TypeScript file.
+
+    .tsx for TypeScript + JSX:
+        A .tsx file is used when the code includes JSX, which is the syntax used in React to describe the UI (e.g., <View>, <Text>).
+        Since RunScreen contains JSX to render UI components, it is appropriately saved as a .tsx file.
