@@ -10,7 +10,7 @@ const getDistance = () => {
     const [previousLongitude, setPreviousLongitude] = useState<number>(0);
     const [currentLatitude, setCurrentLatitude] = useState<number>(0);
     const [currentLongitude, setCurrentLongitude] = useState<number>(0);
-    const haversine = require('haversine');
+    // const haversine = require('haversine');
 
     // Request foreground permissions when the component mounts
     useEffect(() => {
@@ -45,12 +45,20 @@ const getDistance = () => {
                     // setCurrentLatitude(parseFloat(location.coords.latitude.toPrecision(7)));
                     // setCurrentLongitude(parseFloat(location.coords.longitude.toPrecision(7)));
                     if (currentLatitude !== previousLatitude || currentLongitude !== previousLongitude) {
-                        setTotalDistance(totalDistance => totalDistance + haversine(
-                            {latitude: previousLatitude, longitude: previousLongitude},
-                            {latitude: currentLatitude, longitude: currentLongitude},
-                            {unit: 'kilometer'}
-                        ));
-                        // setTotalDistance(totalDistance => totalDistance + 1);
+                        
+                        
+
+                        // Safely increment the total distance first
+                        setTotalDistance(totalDistance => totalDistance + 0.01);
+
+                        // or by using haversine
+                        // setTotalDistance(totalDistance => totalDistance + haversine(
+                        //     {latitude: previousLatitude, longitude: previousLongitude},
+                        //     {latitude: currentLatitude, longitude: currentLongitude},
+                        //     {unit: 'kilometer'}
+                        // ));
+
+                        // Then update the previous coordinates 
                         setPreviousLatitude(currentLatitude);
                         setPreviousLongitude(currentLongitude);
                     }
