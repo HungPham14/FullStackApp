@@ -35,8 +35,8 @@ const RunScreen = () => {
           {isRunning ? 'Pause' : 'Start'}
         </Text>
       </Pressable>
-      <Text style={{ marginTop: 20, fontSize: 18 }}>Distance: {totalDistance} m</Text>
-      {/* <Text style={{ marginTop: 20, fontSize: 18 }}>Distance: {totalDistance.toFixed(3)} km</Text> */}
+      {/* <Text style={{ marginTop: 20, fontSize: 18 }}>Distance: {totalDistance} m</Text> */}
+      <Text style={{ marginTop: 20, fontSize: 18 }}>Distance: {totalDistance.toFixed(3)} km</Text>
       <Text style={{ marginTop: 10, fontSize: 18 }}>Time: {elapsedTime} sec</Text>
     </View>
   );
