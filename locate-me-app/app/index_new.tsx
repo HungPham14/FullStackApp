@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import useTimer from '../hooks/useTimer';
-import useDistanceTracking from '../hooks/useDistance';
+import useDistance from '../hooks/useDistance';
 
 const RunScreen = () => {
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [onReset, setOnReset] = useState<boolean>(false);
 
   const elapsedTime = useTimer(isRunning, onReset);
-  const totalDistance = useDistanceTracking(isRunning, onReset);
+  const totalDistance = useDistance(isRunning, onReset);
 
   const handleToggleTracking = () => {
     setIsRunning((prev) => !prev);
