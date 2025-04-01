@@ -140,7 +140,7 @@ export default function runScreen() {
                         longitudeDelta: 0.0042,
                     }}
                 >
-                    <RadialGradient x="50%" y="50%" rx="60%" ry="40%" colorList={colorList} />
+                    <RadialGradient x="50%" y="50%" rx="55%" ry="30%" colorList={colorList} />
                 </MapView>
 
                 {/* level 2 child View component */}
@@ -168,32 +168,25 @@ export default function runScreen() {
                 </View>
 
                 {/* level 2 child View component */}
-                <View style={{
-                    backgroundColor: "rgb(0, 255, 234)",
-                    height: 120,
-                    width: 120,
-                    justifyContent: "center", // center content vertically
-                    alignItems: "center", // center content horizontally
-                    position: "absolute", // manually position by adjusting top, right, bottom, left
-                    bottom: "9%",
-                    left: windowWidth / 2 - 60,
-                    borderRadius: 60,
-                }}>
-                    <Pressable
-                        onPress={handleToggleTracking} // Tap to start/pause
-                        onLongPress={handleResetTracking} // Long press to reset
-                        style={{
-                            backgroundColor: isRunning ? 'red' : 'green',
-                            padding: 20,
-                            borderRadius: 10,
-                        }}
-                    >
-                        <Text style={{ color: 'white', fontSize: 18 }}>
-                            {isRunning ? 'Pause' : 'Start'}
-                        </Text>
-                    </Pressable>
-                </View>
-
+                <Pressable
+                    onPress={handleToggleTracking} // Tap to start/pause
+                    onLongPress={handleResetTracking} // Long press to reset
+                    style={{
+                        backgroundColor: isRunning ? "rgb(255, 0, 0)" : "rgb(0, 255, 234)",
+                        height: 120,
+                        width: 120,
+                        justifyContent: "center", // center content vertically
+                        alignItems: "center", // center content horizontally
+                        position: "absolute", // manually position by adjusting top, right, bottom, left
+                        bottom: "9%",
+                        left: windowWidth / 2 - 60,
+                        borderRadius: 60,
+                    }}
+                >
+                    <Text style={{ color: 'black', fontSize: 30, fontWeight: "bold" }}>
+                        {isRunning ? 'Pause' : 'Start'}
+                    </Text>
+                </Pressable>
             </View>
         </SafeAreaView>
     );
