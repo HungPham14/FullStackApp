@@ -27,7 +27,7 @@ const RunScreen: React.FC = () => {
     <View style={styles.container}>
       <Text style={styles.title}>Run Tracker</Text>
       <Text style={styles.distance}>
-        Total Distance: {totalDistance.toFixed(2)} km
+        Total Distance: {totalDistance.toFixed(3)} km
       </Text>
 
       <TouchableOpacity

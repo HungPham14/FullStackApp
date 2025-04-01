@@ -18,13 +18,12 @@ const useDistance = () => {
     const id = await Location.watchPositionAsync(
       {
         accuracy: Location.Accuracy.High,
-        timeInterval: 1000, // Update every second
-        distanceInterval: 1, // Update every 1 meter
+        distanceInterval: 10, // Update every 10 meter
       },
       (newLocation) => {
         const { latitude, longitude } = newLocation.coords;
         if (previousLocation) {
-          const distance = getDistanceFromLatLonInKm(
+          const distance = getDistanceFromLatLon(
             previousLocation.latitude,
             previousLocation.longitude,
             latitude,
@@ -49,8 +48,15 @@ const useDistance = () => {
     }
   };
 
-  // Calculate distance between two coordinates
-  const getDistanceFromLatLonInKm = (
+  /*
+  Calculate distance between two coordinates
+  -------------------
+  Logic: 
+    - First, the coordinates { lat, long } received from 'expo-location' module are decimal degrees
+    - Convert to Radians = DecimalDegrees * Pi / 180
+    - Apply Haversine formula
+  */
+  const getDistanceFromLatLon = (
     lat1: number,
     lon1: number,
     lat2: number,
@@ -58,8 +64,9 @@ const useDistance = () => {
   ): number => {
     const toRad = (value: number): number => (value * Math.PI) / 180;
     const R = 6371; // Radius of Earth in km
-    const dLat = toRad(lat2 - lat1);
-    const dLon = toRad(lon2 - lon1);
+    const dLat = toRad(lat2 - lat1); // Delta in Radians of latitude
+    const dLon = toRad(lon2 - lon1); // Delta in Radians of longitude
+    // Apply Haversine formula to calculate distance
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(toRad(lat1)) *
@@ -67,8 +74,8 @@ const useDistance = () => {
         Math.sin(dLon / 2) *
         Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    // return R * c; // Distance in km
-    return R * c * 1000; // Distance in m
+    return R * c; // Distance in km
+    // return R * c * 1000; // Distance in m
   };
 
   return { totalDistance, startTracking, stopTracking };
