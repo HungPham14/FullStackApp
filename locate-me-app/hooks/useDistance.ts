@@ -21,7 +21,7 @@ const haversine = (coord1: Coordinates, coord2: Coordinates) => {
     Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-  return R * c; // return distance in m
+  return R * c; // return distance in km
 };
 
 // the default hook
