@@ -4,8 +4,8 @@ import useTimer from '../hooks/useTimer';
 import useDistanceTracking from '../hooks/useDistance';
 
 const RunScreen = () => {
-  const [isRunning, setIsRunning] = useState(false);
-  const [onReset, setOnReset] = useState(false);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [onReset, setOnReset] = useState<boolean>(false);
 
   const elapsedTime = useTimer(isRunning, onReset);
   const totalDistance = useDistanceTracking(isRunning, onReset);
@@ -32,10 +32,11 @@ const RunScreen = () => {
         }}
       >
         <Text style={{ color: 'white', fontSize: 18 }}>
-          {isRunning ? 'Pause Run' : 'Start Run'}
+          {isRunning ? 'Pause' : 'Start'}
         </Text>
       </Pressable>
-      <Text style={{ marginTop: 20, fontSize: 18 }}>Distance: {totalDistance.toFixed(2)} km</Text>
+      <Text style={{ marginTop: 20, fontSize: 18 }}>Distance: {totalDistance} m</Text>
+      {/* <Text style={{ marginTop: 20, fontSize: 18 }}>Distance: {totalDistance.toFixed(3)} km</Text> */}
       <Text style={{ marginTop: 10, fontSize: 18 }}>Time: {elapsedTime} sec</Text>
     </View>
   );
